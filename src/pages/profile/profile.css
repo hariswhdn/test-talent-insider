@@ -1,0 +1,718 @@
+#profile {
+  background-color: #f3f3f3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#profile > * {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+#profile > header {
+  background-color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 24px;
+}
+
+#profile > header > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  column-gap: 36px;
+}
+
+#profile > header > div:nth-child(1) > a {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+#profile > header > div:nth-child(1) > div {
+  background-color: rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-grow: 1;
+  border-radius: 4px;
+}
+
+#profile > header > div:nth-child(1) > div > label:nth-child(2) {
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+#profile > header > div:nth-child(1) > div > label:nth-child(2) > [type='text'] {
+  border: 0;
+  border-radius: 4px 0 0 4px;
+  flex-grow: 1;
+}
+
+#profile > header > div:nth-child(1) > div > label:nth-child(2) > button {
+  background-color: #e30607;
+  width: 64px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 4px 4px 0;
+}
+
+#profile > header > div:nth-child(1) > div > label:nth-child(1) {
+  flex-direction: row-reverse;
+  align-items: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 12px 0 24px;
+}
+
+#profile > header > div:nth-child(1) > div > label:nth-child(1) > select {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0 12px;
+}
+
+#profile > header > div:nth-child(1) > div > label:nth-child(2) > [type='text'] {
+  background-color: transparent;
+}
+
+#profile > header > div:nth-child(2) {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+#profile > header > div:nth-child(2) > div > ul {
+  display: none;
+}
+
+#profile > header > div:nth-child(2) > div {
+  display: flex;
+}
+
+#profile > header > div:nth-child(2) > button {
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile > header > div:nth-child(2) > nav > ul {
+  display: flex;
+  column-gap: 36px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+}
+
+#profile > header > div:nth-child(2) > nav > ul > li.active {
+  color: #fff;
+  font-weight: 700;
+}
+
+#profile > header > div:nth-child(2) > div > button {
+  background-color: transparent;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+#profile > header > div:nth-child(2) > div > button > img {
+  width: 24px;
+  height: 24px;
+}
+
+/*  */
+
+#profile main {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile main > div:nth-child(1) {
+  position: relative;
+  height: 247px;
+  display: flex;
+  justify-content: center;
+}
+
+#profile main > div:nth-child(1) > button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+#profile main > div:nth-child(1) > img:nth-child(1) {
+  object-fit: cover;
+  max-width: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 54px 54px;
+}
+
+#profile main > div:nth-child(1) > img:nth-child(2) {
+  border: 16px solid red;
+  border-radius: 0 0 77px 77px;
+  height: 200px;
+  position: relative;
+  margin: auto 0 -50px;
+  z-index: 1;
+}
+
+#profile main > div:nth-child(2) > div {
+  display: flex;
+}
+
+#profile main > div:nth-child(2) {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) {
+  background-color: #fff;
+  padding: calc(26px + 20px) 20px 20px;
+  border-radius: 54px 54px 8px 8px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > ul {
+  display: flex;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > ul > li {
+  justify-content: center;
+  display: flex;
+  padding: 0 12px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > ul > li > p {
+  text-align: center;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > ul > li > p > span {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > ul > li:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > p {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 6px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > svg {
+  width: 32px;
+  height: 32px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) {
+  display: flex;
+  gap: 12px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > p:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  padding-right: 12px;
+  font-weight: 600;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > button {
+  background-color: #e30607;
+  color: #fff;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul > li > button {
+  padding: 4px 24px;
+  border-radius: 4px;
+  min-width: 144px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-weight: 600;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul > li:last-child > button {
+  background-color: #e30607;
+  color: #fff;
+  border-color: #e30607;
+}
+
+/*  */
+
+#profile main > div:nth-child(2) > div:nth-child(2) {
+  column-gap: 24px;
+  display: flex;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) {
+  width: calc(100% - 24px - 400px);
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) > p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) > button {
+  background-color: transparent;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > ul > li {
+  padding: 16px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  align-items: flex-start;
+}
+
+#profile
+  main
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(1)
+  > div
+  > div:nth-child(2)
+  > ul
+  > li
+  > p:nth-child(1) {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > ul > li > button {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 4px 16px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > div > p:nth-child(1) {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > div > div {
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > div > div > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > div > div > div > p {
+  color: #fff;
+  font-weight: 600;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+/*  */
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  display: flex;
+  column-gap: 8px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > p > span {
+  font-weight: 400;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > button {
+  background-color: transparent;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li {
+  display: flex;
+  column-gap: 20px;
+  padding-bottom: 16px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li > img {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile
+  main
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > ul
+  > li
+  > div
+  > p:nth-child(1) {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#profile
+  main
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > ul
+  > li
+  > div
+  > p:last-child {
+  margin-top: 8px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li:not(:first-child) {
+  padding-top: 16px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  column-gap: 8px;
+  border-radius: 4px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > button > p {
+  font-weight: 600;
+}
+
+/*  */
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > p {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  display: flex;
+  column-gap: 8px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > p > span {
+  font-weight: 400;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > button {
+  background-color: transparent;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li {
+  display: flex;
+  column-gap: 20px;
+  padding-bottom: 16px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li > img {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li > div {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile
+  main
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > ul
+  > li
+  > div
+  > p:nth-child(1) {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#profile
+  main
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > div:nth-child(2)
+  > ul
+  > li
+  > div
+  > p:last-child {
+  margin-top: 8px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > ul > li:not(:first-child) {
+  padding-top: 16px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 16px;
+  column-gap: 8px;
+  border-radius: 4px;
+}
+
+#profile main > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > button > p {
+  font-weight: 600;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 72px 24px;
+  background-color: #fff;
+}
+
+footer > div:nth-child(1) {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer > div:nth-child(1) > div:nth-child(1),
+footer > div:nth-child(1) > div:nth-child(5) {
+  width: 25%;
+}
+
+footer > div:nth-child(1) > div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  padding: 0 16px;
+}
+
+footer > div:nth-child(1) > div:nth-child(2) > ul,
+footer > div:nth-child(1) > div:nth-child(3) > ul,
+footer > div:nth-child(1) > div:nth-child(4) > ul,
+footer > div:nth-child(1) > div:nth-child(5) > ul {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+footer > div:nth-child(1) > div:nth-child(2) > p,
+footer > div:nth-child(1) > div:nth-child(3) > p,
+footer > div:nth-child(1) > div:nth-child(4) > p,
+footer > div:nth-child(1) > div:nth-child(5) > p {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+footer > div:nth-child(1) > div:nth-child(5) > ul > li:last-child {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+footer > div:nth-child(1) > div:nth-child(5) > ul > li:last-child > ul {
+  display: flex;
+  column-gap: 12px;
+}
+
+footer > div:nth-child(1) > div:nth-child(5) > ul > li:last-child > ul > li > a {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.875);
+  border-radius: 50%;
+}
+
+footer > div:nth-child(1) > div:nth-child(5) > ul > li:last-child > ul > li > a > svg {
+  fill: #fff;
+  height: 20px;
+  width: 20px;
+}
+
+footer > div:nth-child(1) > div:nth-child(2),
+footer > div:nth-child(1) > div:nth-child(3),
+footer > div:nth-child(1) > div:nth-child(4) {
+  width: calc(50% / 3);
+}
+
+footer > div:nth-child(1) > div:nth-child(1) > a {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+footer > div:nth-child(2) {
+  padding: 8px 0;
+}

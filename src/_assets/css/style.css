@@ -1,0 +1,269 @@
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-LightItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-Italic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-Medium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'OpenSans';
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+  src: url('/fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Oxygen/Oxygen-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Oxygen/Oxygen.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Oxygen/Oxygen-Bold.ttf') format('truetype');
+}
+input:not([type='checkbox']):not([type='radio']):not([type='range']),
+select,
+textarea {
+  min-height: 36px;
+  padding: 7px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+label > p {
+  font-weight: 500;
+}
+label > p > span {
+  color: #e30607;
+}
+#root {
+  background-color: #fff;
+  min-width: 370px;
+  min-height: 100vh;
+  color: rgba(0, 0, 0, 0.875);
+  font-family: 'OpenSans', sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+#auth {
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.1), #fff);
+  display: flex;
+  flex-direction: column;
+}
+#auth button {
+  background-color: #e30607;
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  column-gap: 16px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+}
+#auth > * {
+  width: 100%;
+  margin: 0 auto;
+}
+#auth > header {
+  padding: 28px 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+#auth > header > p:nth-child(1) {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 600;
+}
+#auth > header > p:nth-child(2) {
+  font-size: 16px;
+  line-height: 24px;
+}
+#auth > main {
+  min-height: calc(100vh - 96px);
+  padding: 0 24px 96px;
+  display: flex;
+  justify-content: center;
+}
+#auth > main > form {
+  background-color: #fff;
+  width: 100%;
+  max-width: 640px;
+  margin: auto 0;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+#auth > main > form > button {
+  margin: 0 auto;
+}
+#auth > main > form > button > img {
+  height: 20px;
+}
+#auth > main > form > p:nth-child(1) {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  text-align: center;
+}
+#auth > main > form > div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+#auth > main > form > div:nth-child(2) > div {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+#auth > main > form > div:nth-child(2) > div:not(:last-child) {
+  padding-right: 24px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+#auth > main > form > div:nth-child(4):has(*:not(:last-child)) {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+#auth > main > form > div:nth-child(4):has(*:not(:last-child)) > a {
+  font-weight: 700;
+}
+#auth > main > form > div:nth-child(4) > p {
+  color: rgba(0, 0, 0, 0.625);
+  font-weight: 500;
+  text-align: center;
+}
+#auth > main > form > div:nth-child(4) > p > a {
+  color: rgba(0, 0, 0, 0.875);
+  font-weight: 700;
+}
+#auth > main > form > div:nth-child(5) {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 1px;
+  max-width: 360px;
+  margin: 0 auto;
+  position: relative;
+}
+#auth > main > form > div:nth-child(5) > span {
+  background-color: #fff;
+  padding: 0 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  font-weight: 600;
+}
