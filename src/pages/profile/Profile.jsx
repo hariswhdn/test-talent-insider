@@ -1,23 +1,61 @@
-import Button from '/src/_components/button'
-import Field from '/src/_components/field'
+import {useEffect, useState} from 'react'
+import {useNavigate, Link} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {logout} from '/src/_stores/authSlice'
+import {getExperience, addExperience} from '/src/_stores/experienceSlice'
+
+import Button from '/src/_components/Button'
+import Field from '/src/_components/Field'
 import Icon from '/src/_components/Icon'
+import Modal from '/src/_components/Modal'
 import './profile.css'
 import portrait from '/src/_assets/img/portrait.png'
 import cover from '/src/_assets/img/cover.png'
 import portrait_badge from '/src/_assets/img/portrait_badge.png'
 import talent_insider from '/src/_assets/img/talent_insider.png'
-// import gojek from '../../img/gojek.png'
-// import jco from '../../img/jco.png'
-// import jco2 from '../../img/jco2.png'
-// import fiverr from '../../img/fiverr.png'
-// import fiverr2 from '../../img/fiverr2.png'
 
 export default function Profile() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {auth} = useSelector((state) => state.auth)
+  const {experience} = useSelector((state) => state.experience)
+
+  const [init, setInit] = useState(false)
+  const [modalExperience, setModalExperience] = useState(false)
+  const [sortedExperience, setSortedExperience] = useState([])
+  const [navSub, setNavSub] = useState(false)
+
+  useEffect(() => {
+    setInit(true)
+  }, [])
+
+  useEffect(() => {
+    if (init && Object.keys(auth).length > 0 && auth?.user?._id) {
+      dispatch(getExperience(auth.user._id))
+    }
+  }, [auth, init])
+
+  useEffect(() => {
+    if (Object.keys(experience).length > 0) {
+      const willSortedExperience = [...experience].sort(function (a, b) {
+        return new Date(b.start) - new Date(a.start)
+      })
+      setSortedExperience(willSortedExperience)
+    }
+  }, [experience])
+
   return (
-    <div id="profile">
+    <div
+      id="profile"
+      onClick={() => {
+        if (navSub) {
+          setNavSub(false)
+        }
+      }}>
       <header>
         <div>
-          <a href="/">LOGO</a>
+          <Link to="/">LOGO</Link>
           <div>
             <Field type="select" selectOption={['Menu']} onChange={() => {}}>
               <Icon icon="language"></Icon>
@@ -37,16 +75,26 @@ export default function Profile() {
             <Icon icon="notifications"></Icon>
           </Button>
           <div>
-            <Button onClick={() => {}}>
+            <Button
+              onClick={() => {
+                setNavSub(!navSub)
+              }}>
               <img src={portrait} alt="img" />
               <Icon icon="arrow_drop_down"></Icon>
             </Button>
-            <ul>
+            <ul className={'nav_sub' + (navSub ? ' show' : '')}>
               <li>
-                <a href="#">Profile</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="#">Sign out</a>
+                <Button
+                  onClick={() => {
+                    if (dispatch(logout())) {
+                      navigate('/login')
+                    }
+                  }}>
+                  Sign out
+                </Button>
               </li>
             </ul>
           </div>
@@ -189,96 +237,45 @@ export default function Profile() {
                 <p>
                   Experience<span>(8)</span>
                 </p>
-                <Button onClick={() => {}}>
+                <Button onClick={() => setModalExperience(true)}>
                   <Icon icon="add" />
                 </Button>
               </div>
               <div>
                 <ul>
-                  <li>
-                    <img src={talent_insider} alt="img" />
-                    <div>
-                      <p>UI/UX Designer</p>
-                      <p>
-                        <span>Talent Insider</span>
-                        &nbsp;-&nbsp;
-                        <span>Full-time</span>
-                      </p>
-                      <p>
-                        <span>Aug 2022</span>
-                        &nbsp;-&nbsp;
-                        <span>Present</span>
-                      </p>
-                      <p>Rukan Artha Gading, North Jakarta</p>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis accumsan, risus sem
-                        sollicitudin lacus, ut interdum tellus elit risus sem sollicit udin dolor sit amet, con
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img src={talent_insider} alt="img" />
-                    <div>
-                      <p>UI/UX Designer</p>
-                      <p>
-                        <span>Talent Insider</span>
-                        &nbsp;-&nbsp;
-                        <span>Full-time</span>
-                      </p>
-                      <p>
-                        <span>Aug 2022</span>
-                        &nbsp;-&nbsp;
-                        <span>Present</span>
-                      </p>
-                      <p>Rukan Artha Gading, North Jakarta</p>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis accumsan, risus sem
-                        sollicitudin lacus, ut interdum tellus elit risus sem sollicit udin dolor sit amet, con
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img src={talent_insider} alt="img" />
-                    <div>
-                      <p>UI/UX Designer</p>
-                      <p>
-                        <span>Talent Insider</span>
-                        &nbsp;-&nbsp;
-                        <span>Full-time</span>
-                      </p>
-                      <p>
-                        <span>Aug 2022</span>
-                        &nbsp;-&nbsp;
-                        <span>Present</span>
-                      </p>
-                      <p>Rukan Artha Gading, North Jakarta</p>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis accumsan, risus sem
-                        sollicitudin lacus, ut interdum tellus elit risus sem sollicit udin dolor sit amet, con
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <img src={talent_insider} alt="img" />
-                    <div>
-                      <p>UI/UX Designer</p>
-                      <p>
-                        <span>Talent Insider</span>
-                        &nbsp;-&nbsp;
-                        <span>Full-time</span>
-                      </p>
-                      <p>
-                        <span>Aug 2022</span>
-                        &nbsp;-&nbsp;
-                        <span>Present</span>
-                      </p>
-                      <p>Rukan Artha Gading, North Jakarta</p>
-                      <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis accumsan, risus sem
-                        sollicitudin lacus, ut interdum tellus elit risus sem sollicit udin dolor sit amet, con
-                      </p>
-                    </div>
-                  </li>
+                  {sortedExperience.map(function (item) {
+                    const dateStart = new Date(item.start)
+                    const dayStart = dateStart.toLocaleString('id-ID', {day: 'numeric'})
+                    const monthStart = dateStart.toLocaleString('id-ID', {month: 'short'})
+                    const yearStart = dateStart.toLocaleString('id-ID', {year: '2-digit'})
+                    const dateEnd = new Date(item.end)
+                    const dayEnd = dateEnd.toLocaleString('id-ID', {day: 'numeric'})
+                    const monthEnd = dateEnd.toLocaleString('id-ID', {month: 'short'})
+                    const yearEnd = dateStart.toLocaleString('id-ID', {year: '2-digit'})
+                    return (
+                      <li key={item._id}>
+                        <img src={talent_insider} alt="img" />
+                        <div>
+                          <p>{item.jobTitle}</p>
+                          <p>
+                            <span>{item.company}</span>
+                            &nbsp;-&nbsp;
+                            <span>Full-time</span>
+                          </p>
+                          <p>
+                            <span>{dayStart + ' ' + monthStart + ' ' + yearStart}</span>
+                            &nbsp;-&nbsp;
+                            <span>{dayEnd + ' ' + monthEnd + ' ' + yearEnd}</span>
+                          </p>
+                          <p>{item.country}</p>
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis accumsan, risus sem
+                            sollicitudin lacus, ut interdum tellus elit risus sem sollicit udin dolor sit amet, con
+                          </p>
+                        </div>
+                      </li>
+                    )
+                  })}
                 </ul>
                 <Button onClick={() => {}}>
                   <p>See More</p>
@@ -288,6 +285,7 @@ export default function Profile() {
             </div>
           </div>
         </div>
+        {modalExperience && <ModalExperience setState={setModalExperience} />}
       </main>
       <footer>
         <div>
@@ -359,5 +357,110 @@ export default function Profile() {
         <div>© LOGO 2022</div>
       </footer>
     </div>
+  )
+}
+
+function ModalExperience({setState}) {
+  const dispatch = useDispatch()
+
+  const {auth} = useSelector((state) => state.auth)
+  const {loading, experience, error} = useSelector((state) => state.experience)
+
+  const [country, setCountry] = useState('')
+  const [jobTitle, setJobTitle] = useState('')
+  const [companyName, setCompanyName] = useState('')
+  const [currentlyWorking, setCurrentlyWorking] = useState(false)
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    if (Object.keys(auth).length > 0 && auth?.user?._id && auth?.token) {
+      if (
+        dispatch(
+          addExperience(
+            {
+              createdBy: auth.user._id,
+              country: country,
+              jobTitle: jobTitle,
+              company: companyName,
+              currentJob: currentlyWorking,
+              start: startDate,
+              end: endDate,
+            },
+            auth.token
+          )
+        )
+      ) {
+        setState(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (Object.keys(experience).length > 0) {
+    }
+  }, [experience])
+
+  return (
+    <Modal title="Add Experience" desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit." setState={setState}>
+      <form onSubmit={(e) => onSubmit(e)}>
+        <Field
+          label="Country"
+          placeholder="Enter a country"
+          required={true}
+          disabled={loading}
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
+        <Field
+          label="Job Title"
+          placeholder="Enter a position or title"
+          required={true}
+          disabled={loading}
+          value={jobTitle}
+          onChange={(e) => setJobTitle(e.target.value)}
+        />
+        <Field
+          label="Company Name"
+          placeholder="Ex. Microsoft"
+          required={true}
+          disabled={loading}
+          value={companyName}
+          onChange={(e) => setCompanyName(e.target.value)}
+        />
+        <Field
+          label="I'm currently working in this role"
+          type="checkbox"
+          disabled={loading}
+          checked={currentlyWorking}
+          onChange={(e) => setCurrentlyWorking(e.target.checked)}
+        />
+        <Field
+          label="Start Date"
+          type="date"
+          required={true}
+          disabled={loading}
+          value={startDate}
+          onChange={(e) => {
+            setStartDate(new Date(e.target.value).toISOString().split('T')[0])
+          }}
+        />
+        <Field
+          label="End Date"
+          type="date"
+          required={!currentlyWorking}
+          disabled={currentlyWorking}
+          value={endDate}
+          onChange={(e) => {
+            setEndDate(new Date(e.target.value).toISOString().split('T')[0])
+          }}
+        />
+        <p>{error}</p>
+        <Button type="submit" disabled={loading}>
+          Save
+        </Button>
+      </form>
+    </Modal>
   )
 }

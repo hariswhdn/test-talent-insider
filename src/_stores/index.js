@@ -1,10 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit'
 
-import countrySlice from './countrySlice'
+import authReducer from './authSlice'
+import experienceReducer from './experienceSlice'
+import jobsReducer from './jobsSlice'
 
 const store = configureStore({
   reducer: {
-    country: countrySlice,
+    auth: authReducer,
+    experience: experienceReducer,
+    jobs: jobsReducer,
   },
 })
 

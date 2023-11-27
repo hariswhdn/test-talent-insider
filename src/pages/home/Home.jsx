@@ -1,13 +1,47 @@
-import {useState} from 'react'
-import Icon from '/src/_components/Icon'
-import Field from '/src/_components/field'
-import Button from '/src/_components/button'
-import MultiRange from '/src/_components/multiRange'
+import {useEffect, useState} from 'react'
+import {useNavigate, Link} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
+import {logout} from '/src/_stores/authSlice'
+import {getJobs} from '/src/_stores/jobsSlice'
+
 import './home.css'
+import Icon from '/src/_components/Icon'
+import Field from '/src/_components/Field'
+import Button from '/src/_components/Button'
+import MultiRange from '/src/_components/multiRange'
 import portrait from '/src/_assets/img/portrait.png'
 import talent_insider from '/src/_assets/img/talent_insider.png'
 
 export default function Home() {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const {jobs} = useSelector((state) => state.jobs)
+
+  const [init, setInit] = useState(false)
+  const [sortedJobs, setSortedJobs] = useState([])
+  const [navSub, setNavSub] = useState(false)
+
+  useEffect(() => {
+    setInit(true)
+  }, [])
+
+  useEffect(() => {
+    if (init) {
+      dispatch(getJobs())
+    }
+  }, [init])
+
+  useEffect(() => {
+    if (jobs && jobs.length > 0) {
+      const filteredJobs = [...jobs].filter((item) => item.status != 'published')
+      const willSortedJobs = [...filteredJobs].sort(function (a, b) {
+        return new Date(b.updatedAt) - new Date(a.updatedAt)
+      })
+      setSortedJobs(willSortedJobs)
+    }
+  }, [jobs])
+
   const salaryMin = 1960000
   const salaryMax = 9960000
   const [salaryRangeMin, setSalaryRangeMin] = useState(salaryMin)
@@ -40,10 +74,16 @@ export default function Home() {
   const [salaryRangeCollapse, setSalaryRangeCollapse] = useState(false)
 
   return (
-    <div id="home">
+    <div
+      id="home"
+      onClick={() => {
+        if (navSub) {
+          setNavSub(false)
+        }
+      }}>
       <header>
         <div>
-          <a href="/">LOGO</a>
+          <Link to="/">LOGO</Link>
           <Field placeholder="Search jobs..." onChange={() => {}}>
             <Button onClick={() => {}}>
               <Icon icon="search" size={20} color="#fff" />
@@ -54,10 +94,10 @@ export default function Home() {
           <nav>
             <ul>
               <li className="active">
-                <a href="/">Jobs</a>
+                <Link to="/">Jobs</Link>
               </li>
               <li>
-                <a href="/profile">Profile</a>
+                <Link to="/profile">Profile</Link>
               </li>
             </ul>
           </nav>
@@ -65,16 +105,26 @@ export default function Home() {
             <Icon icon="notifications" color="#fff" />
           </Button>
           <div>
-            <Button onClick={() => {}}>
+            <Button
+              onClick={() => {
+                setNavSub(!navSub)
+              }}>
               <img src={portrait} alt="img" />
               <Icon icon="arrow_drop_down" size={16} color="#fff" />
             </Button>
-            <ul>
+            <ul className={'nav_sub' + (navSub ? ' show' : '')}>
               <li>
-                <a href="#">Profile</a>
+                <Link to="/profile">Profile</Link>
               </li>
               <li>
-                <a href="#">Sign out</a>
+                <Button
+                  onClick={() => {
+                    if (dispatch(logout())) {
+                      navigate('/login')
+                    }
+                  }}>
+                  Sign out
+                </Button>
               </li>
             </ul>
           </div>
@@ -282,330 +332,56 @@ export default function Home() {
             <Field label="Sort by" type="select" selectOption={['Most relevant']} onChange={() => {}} />
           </div>
           <div>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
+            {sortedJobs.map(function (item) {
+              const dateEnd = new Date(item.endPost)
+              const dayEnd = dateEnd.toLocaleString('id-ID', {day: 'numeric'})
+              const monthEnd = dateEnd.toLocaleString('id-ID', {month: 'short'})
+              const yearEnd = dateEnd.toLocaleString('id-ID', {year: '2-digit'})
+              return (
+                <article key={item._id}>
                   <div>
-                    <p>Full Stack Developer</p>
                     <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
+                      <img src={talent_insider} alt="img" />
+                      <div>
+                        <p>{item.title}</p>
+                        <div>
+                          <p>{item.company}</p>
+                          <Icon icon="verified_user" size={16} color="#296ce6" />
+                        </div>
+                      </div>
+                    </div>
+                    <Button onClick={() => {}}>
+                      <Icon icon="bookmark_border" color="#010e80" />
+                    </Button>
+                  </div>
+                  <ul>
+                    <li>{item.employement}</li>
+                    <li>{`${item.experience} years`}</li>
+                    <li>{`IDR ${Intl.NumberFormat('en', {
+                      notation: 'compact',
+                      maximumFractionDigits: 1,
+                    }).format(item.minSalary)}-${Intl.NumberFormat('en', {
+                      notation: 'compact',
+                      maximumFractionDigits: 1,
+                    }).format(item.maxSalary)}`}</li>
+                  </ul>
+                  <div>
+                    <div>
+                      <Icon icon="place" size={16} color="#e30607" />
+                      <p>{item.countries}</p>
+                    </div>
+                    <div>
+                      <p>{item.workplace}</p>
+                      <div>
+                        <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
+                        <p>{`${dayEnd} ${monthEnd} ${yearEnd}`}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
-            <article>
-              <div>
-                <div>
-                  <img src={talent_insider} alt="img" />
-                  <div>
-                    <p>Full Stack Developer</p>
-                    <div>
-                      <p>Talent Insider</p>
-                      <Icon icon="verified_user" size={16} color="#296ce6" />
-                    </div>
-                  </div>
-                </div>
-                <Button onClick={() => {}}>
-                  <Icon icon="bookmark_border" color="#010e80" />
-                </Button>
-              </div>
-              <ul>
-                <li>Full time</li>
-                <li>1-2 years</li>
-                <li>IDR 5M-7M</li>
-              </ul>
-              <div>
-                <div>
-                  <Icon icon="place" size={16} color="#e30607" />
-                  <p>Indonesia</p>
-                </div>
-                <div>
-                  <p>On-site</p>
-                  <div>
-                    <Icon icon="schedule" size={16} color="rgba(0,0,0,.625)" />
-                    <p>3d</p>
-                  </div>
-                </div>
-              </div>
-              <Button onClick={() => {}}>Easy Apply</Button>
-            </article>
+                  <Button onClick={() => {}}>Easy Apply</Button>
+                </article>
+              )
+            })}
           </div>
         </div>
       </main>

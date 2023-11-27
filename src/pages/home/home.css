@@ -62,11 +62,8 @@
   column-gap: 24px;
 }
 
-#home > header > div:nth-child(2) > div > ul {
-  display: none;
-}
-
 #home > header > div:nth-child(2) > div {
+  position: relative;
   display: flex;
 }
 

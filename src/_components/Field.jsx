@@ -1,5 +1,3 @@
-import './field.css'
-
 export default function Field({
   label,
   type = 'text',

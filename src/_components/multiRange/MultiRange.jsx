@@ -4,8 +4,8 @@ import './multiRange.css'
 export default function MultiRange({className, min, max, onChange}) {
   const [minVal, setMinVal] = useState(min)
   const [maxVal, setMaxVal] = useState(max)
-  const minValRef = useRef(null)
-  const maxValRef = useRef(null)
+  const minValRef = useRef(min)
+  const maxValRef = useRef(max)
   const range = useRef(null)
 
   // Convert to percentage
@@ -55,7 +55,7 @@ export default function MultiRange({className, min, max, onChange}) {
           setMinVal(value)
           e.target.value = value.toString()
         }}
-        className={'thumb' + (minVal > max - 100 ? ' zindex5' : ' zindex3')}
+        className={'thumb ' + (minVal > max / 2 ? 'zindex5' : 'zindex3')}
       />
       <input
         type="range"

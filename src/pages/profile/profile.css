@@ -84,11 +84,8 @@
   column-gap: 24px;
 }
 
-#profile > header > div:nth-child(2) > div > ul {
-  display: none;
-}
-
 #profile > header > div:nth-child(2) > div {
+  position: relative;
   display: flex;
 }
 
